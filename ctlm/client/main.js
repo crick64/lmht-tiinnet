@@ -1,6 +1,12 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+import angular from 'angular';
+import angularMeteor from 'angular-meteor';
+ 
+angular.module('lmht', [
+  angularMeteor
+]);
 import './main.html';
 
 Template.hello.onCreated(function helloOnCreated() {
