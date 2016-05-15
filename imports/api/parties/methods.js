@@ -48,12 +48,24 @@ export function invite(partyId, userId) {
     const to = getContactEmail(Meteor.users.findOne(userId));
 
     if (Meteor.isServer && to) {
-      Email.send({
-        to,
-        replyTo,
-        from: 'noreply@tiiin.net',
-        subject: `[LMHT.tiiin.neT] Bạn nhận được một lời mời chơi game`,
-        text: `
+      // Email.send({
+      //   to,
+      //   replyTo,
+      //   from: 'noreply@tiiin.net',
+      //   subject: `[LMHT.tiiin.neT] Bạn nhận được một lời mời chơi game`,
+      //   text: `
+      //     Hey, có người vừa mời bạn chơi cùng họ, thắng sẽ nhận được tiền thưởng trên lmht.tiiin.net.
+      //     Click vào đây để xem chi tiết: ${Meteor.absoluteUrl()}
+      //   `
+      // });
+
+      Meteor.call('sendEmail', {
+        to: to,
+        replyTo: replyTo,
+        from: 'noreply@lmht.tiiin.net',
+        subject: '[LMHT.tiiin.neT] Bạn nhận được một lời mời chơi game',
+        text: 'Mailgun is totally awesome for sending emails!',
+        html: `
           Hey, có người vừa mời bạn chơi cùng họ, thắng sẽ nhận được tiền thưởng trên lmht.tiiin.net.
           Click vào đây để xem chi tiết: ${Meteor.absoluteUrl()}
         `
