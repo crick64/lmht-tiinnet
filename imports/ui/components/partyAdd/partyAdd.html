@@ -1,0 +1,27 @@
+<div layout="column" layout-padding>
+  <md-input-container>
+    <label>
+      Tên phòng
+    </label>
+    <input type="text" ng-model="partyAdd.party.name"/>
+  </md-input-container>
+  <md-input-container>
+    <label>
+      Tiền thưởng (cho 1 người chơi nếu thắng)
+    </label>
+    <md-select ng-model="partyAdd.party.description">
+          <md-option ng-repeat="price in partyAdd.party.prices" value="{{price}}">
+            {{price}}
+          </md-option>
+    </md-select>
+    <!-- <input type="text" ng-model="partyAdd.party.description"/> -->
+  </md-input-container>
+  <div flex>
+    <md-checkbox ng-model="partyAdd.party.public" aria-label="Public Party?">
+      Mời tất cả gamer?
+    </md-checkbox>
+  </div>
+  <div flex>
+    <md-button ng-click="partyAdd.submit()" class="md-raised">Tạo phòng!</md-button>
+  </div>
+</div>

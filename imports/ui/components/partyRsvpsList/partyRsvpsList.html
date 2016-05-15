@@ -1,0 +1,26 @@
+<div class="rsvp-sum">
+  <div class="rsvp-amount">
+    <div class="amount">
+      {{ (partyRsvpsList.rsvps | filter:{rsvp:'yes'}).length || 0 }}
+    </div>
+    <div class="rsvp-title">
+      Yes!
+    </div>
+  </div>
+  <!-- <div class="rsvp-amount">
+    <div class="amount">
+      {{ (partyRsvpsList.rsvps | filter:{rsvp:'maybe'}).length || 0 }}
+    </div>
+    <div class="rsvp-title">
+      Có thể
+    </div>
+  </div> -->
+  <div class="rsvp-amount">
+    <div class="amount">
+      {{ (partyRsvpsList.rsvps | filter:{rsvp:'no'}).length || 0 }}
+    </div>
+    <div class="rsvp-title">
+      No
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <title>We love LOL | lmht.tiiin.net</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.7/angular-material.min.css">
+  <link rel="icon" sizes="16x16 32x32" href="/favicon.ico?v=2">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <script type="text/javascript">
+    function copyToClipboard(obj) {
+      var aux = document.createElement("input");
+      aux.setAttribute("value", obj.innerHTML);
+      if (document.getElementById('copied-data')) {
+        document.getElementById('copied-data').innerHTML = obj.innerHTML;
+      }
+      document.body.appendChild(aux);
+      aux.select();
+      document.execCommand("copy");
+      document.body.removeChild(aux);
+    }
+  </script>
+</head>
+<body>
+  <socially></socially>
+</body>

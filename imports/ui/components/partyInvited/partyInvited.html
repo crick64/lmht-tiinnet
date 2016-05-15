@@ -1,0 +1,25 @@
+<h4 class="md-headline" style="color: cyan">
+  Người chơi đã mời
+  <span class="total-charge" style="font-weight:bold; font-size:1.4em; color:light-white">[ {{(partyInvited.party.description * 1)}}x{{partyInvited.totalGoes()}} = <span style="color:orange">{{(partyInvited.party.description * 1) * (partyInvited.totalGoes()) | number : 0}}</span> ]</span>
+</h4>
+
+<md-list>
+
+  <md-list-item ng-repeat="user in partyInvited.users | invitedFilter:partyInvited.party" ng-click="partyInvited.viewlmss(user)">
+    <p>
+      <span style="font-weight:bold; font-size:1.2em">
+        <span ng-show="partyInvited.isAnswer(user._id)" style="font-size:1.8em;color:lightgreen">
+          <i class="fa fa-check-square" aria-hidden="true"></i> </span>
+          <i ng-hide="partyInvited.isAnswer(user._id)" class="fa fa-spinner" aria-hidden="true"></i>&nbsp;
+          {{ user | displayNameFilter }} - <span class="clickable" onClick="copyToClipboard(this);" style="color:lightyellow">{{user.profile.ign}}</span>
+        </span>
+        <!-- <span ng-hide="partyInvited.isAnswer(user._id)" ng-click="partyInvited.unInvite(user)"> Hủy mời</span> -->
+    </p>
+  </md-list-item>
+  <md-list-item ng-if="(partyInvited.users | invitedFilter:partyInvited.party).length <= 0">
+    Chưa mời người chơi nào!
+  </md-list-item>
+  <!-- <md-list-item ng-if="(partyInvited.users | invitedFilter:partyInvited.party).length > 0"> -->
+
+  <!-- </md-list-item> -->
+</md-list>
