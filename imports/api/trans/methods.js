@@ -37,6 +37,8 @@ export function gettrans() {
       }]
   });
 
+  return tranns;
+
 }
 
 Meteor.methods({
