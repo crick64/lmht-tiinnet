@@ -55,7 +55,6 @@ class PartyDetails {
         name: this.party.name,
         description: this.party.description,
         public: this.party.public
-        //location: this.party.location
       }
     }, (error) => {
       if (error) {
@@ -75,7 +74,6 @@ export default angular.module(name, [
   uiRouter,
   PartyUninvited,
   PartyInvited
-  //PartyMap
 ]).component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,
   controllerAs: name,
@@ -87,15 +85,14 @@ function config($stateProvider) {
   'ngInject';
 
   $stateProvider.state('partyDetails', {
-    url: '/parties/:partyId',
+    url: '/parties/:partyOwner/:partyId',
     template: '<party-details></party-details>',
     resolve: {
       currentUser($q, $stateParams) {
-        console.log($stateParams.partyOwner, Meteor.userId());
         if (Meteor.userId() === null) {
           return $q.reject('AUTH_REQUIRED');
         } else if ($stateParams.partyOwner !== Meteor.userId()) {
-          return $q.reject('AUTH_REQUIRED');
+          return $q.reject('PARTY_OWNER_REQUIRED');
         } else {
           return $q.resolve();
         }

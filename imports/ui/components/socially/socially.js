@@ -65,6 +65,9 @@ function run($rootScope, $state) {
       if (error === 'AUTH_REQUIRED') {
         $state.go('parties');
       }
+      if (error === 'PARTY_OWNER_REQUIRED') {
+        $state.go('parties');
+      }
     }
   );
 }
