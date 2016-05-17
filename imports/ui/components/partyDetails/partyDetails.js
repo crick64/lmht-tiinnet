@@ -17,7 +17,6 @@ class PartyDetails {
     $reactive(this).attach($scope);
 
     this.partyId = $stateParams.partyId;
-    this.prices = ["2.000","3.000","5.000","10.000"];
     this.subscribe('parties');
     this.subscribe('users');
 
@@ -37,7 +36,7 @@ class PartyDetails {
   }
 
   owner_ign() {
-    return Meteor.users.findOne(this.party.owner).profile.ign;
+    return Meteor.users.findOne(this.party.owner).profile.ign || 'sccare';
   }
 
   canInvite() {
@@ -91,8 +90,11 @@ function config($stateProvider) {
     url: '/parties/:partyId',
     template: '<party-details></party-details>',
     resolve: {
-      currentUser($q) {
+      currentUser($q, $stateParams) {
+        console.log($stateParams.partyOwner, Meteor.userId());
         if (Meteor.userId() === null) {
+          return $q.reject('AUTH_REQUIRED');
+        } else if ($stateParams.partyOwner !== Meteor.userId()) {
           return $q.reject('AUTH_REQUIRED');
         } else {
           return $q.resolve();

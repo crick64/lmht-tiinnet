@@ -10,12 +10,12 @@
   </div>
 
   <div layout="column" layout-gt-sm="row">
-    <div flex="80">
+    <div flex="85">
       <md-content class="md-padding" layout="row" layout-wrap style="background-color: rgba(0, 0, 0, 0.4);">
           <md-card style="color:white; background-color: rgba(255, 255, 255, 0.2);" dir-paginate="party in partiesList.parties | itemsPerPage: partiesList.perPage" total-items="partiesList.partiesCount">
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline" style="color:orange" ui-sref="partyDetails({ partyId: party._id })">
+                <span class="md-headline" style="color:orange" ui-sref="partyDetails({ partyId: party._id, partyOwner: party.owner })">
                   {{party.name}}
                   <party-remove party="party"></party-remove>
                 </span>
@@ -24,7 +24,6 @@
             </md-card-title>
             <md-card-content>
               <party-rsvps-list rsvps="party.rsvps"></party-rsvps-list>
-
               <party-unanswered party="party" ng-if="!party.public"></party-unanswered>
               <div ng-if="party.public">
                 Mọi người đều được mời!
@@ -32,7 +31,7 @@
               <party-creator party="party"></party-creator>
             </md-card-content>
             <md-card-actions>
-              <party-rsvp party="party" ng-show="partiesList.isLoggedIn"></party-rsvp>
+              <party-rsvp party="party" ng-hide="partiesList.isOwner(party)"></party-rsvp>
               <div ng-hide="partiesList.isLoggedIn">
                 <i>Vui lòng Đăng nhập để phản hồi lời mời</i>
               </div>
@@ -41,9 +40,8 @@
       </md-content>
       <dir-pagination-controls on-page-change="partiesList.pageChanged(newPageNumber)"></dir-pagination-controls>
     </div>
-    <div flex="20">
+    <div flex="15">
       <!-- <parties-map parties="partiesList.parties"></parties-map> -->
-
       <div id="charge-form" ng-show="partiesList.isLoggedIn" style="padding-left:20px; color:white;">
         <h3>Nạp tiền vào TK</h3>
         <iframe frameborder="0" height="420" marginheight="0" marginwidth="0" src="https://pluspay.vn/card/1888/evrthg2you@gmail.com" width="650"></iframe>
