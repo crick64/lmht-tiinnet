@@ -32,7 +32,12 @@ class Auth {
     });
   }
 
+  toggleAvailable() {
+    Meteor.users.update(Meteor.userId(), {$set: {'profile.isAvailable' : this.currentUser.profile.isAvailable}});
+  }
+
   logout() {
+    Meteor.users.update(Meteor.userId(), {$set: {'profile.isAvailable' : false}});
     Accounts.logout();
   }
 }

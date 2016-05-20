@@ -1,14 +1,13 @@
 <div layout="column" layout-padding style="color:white">
   <div layout="column" layout-gt-sm="row"  layout-padding>
     <div flex="20" layout="column">
-
-    <party-uninvited flex party="partyDetails.party" ng-show="partyDetails.canInvite()"></party-uninvited>
-    <party-invited flex party="partyDetails.party" ng-show="partyDetails.canInvite()"></party-invited>
-    </div>
+      <party-uninvited flex party="partyDetails.party" ng-show="partyDetails.canInvite()"></party-uninvited>
+      <party-invited flex party="partyDetails.party" ng-show="partyDetails.canInvite()"></party-invited>
+    </div>    
     <div flex="80" layout="column">
       <h1 style="color:orange">{{partyDetails.party.name}} - {{partyDetails.owner_ign()}}</h1>
       <iframe width="100%" height="800px" id="gm-info" src="http://lienminhsamsoi.vn/profile?name="></iframe>
       <h4 style="background-color:#f9f9f9; color:black">Hãy click vào tên trong game để copy và mời kết bạn trong LOL, bạn đang copy [<span style="color:red" id="copied-data"></span>]. Khi đã copy bạn chỉ cần ấn Ctrl+V để dán tên lúc mời kết bạn, quá tiện lợi phải không :)</h4>
     </div>
-  </div>  
+  </div>
 </div>

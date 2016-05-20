@@ -1,7 +1,15 @@
 <div layout="row">
   <md-button flex ui-sref="login" ng-hide="auth.isLoggedIn">Đăng nhập</md-button>
   <md-button flex ui-sref="register" ng-hide="auth.isLoggedIn">Đăng ký TK</md-button>
-  <div ng-show="auth.isLoggedIn"><i class="fa fa-user" aria-hidden="true"></i>{{ auth.currentUser | displayNameFilter }}</div>
-  <div ng-show="auth.isLoggedIn"> [{{auth.currentUser.profile.ign}}] <span style="color:lightyellow">{{auth.currentUser.profile.amount | number : 0}}</span></div>
+  <span style="font-size:0.7em;padding-top: 22px;" ng-show="auth.isLoggedIn">Bạn có sẵn sàng chiến?</span>
+  <md-switch ng-show="auth.isLoggedIn" ng-model="auth.currentUser.profile.isAvailable" aria-label="is available" ng-change="auth.toggleAvailable()" class="md-warn">
+    {{#if auth.currentUser.profile.isAvailable}}
+      <span style="font-size: 0.7em">Sẵn sàng chiến</span>
+    {{else}}
+      <span style="font-size: 0.7em">Đang bận chiến rồi</span>
+    {{/if}}
+  </md-switch>
+  <div ng-show="auth.isLoggedIn"><i class="fa fa-user" aria-hidden="true"></i><span style="padding-top: 22px;">{{ auth.currentUser | displayNameFilter }}</span></div>
+  <div ng-show="auth.isLoggedIn"> [{{auth.currentUser.profile.ign}}]<br/><i class="fa fa-money" aria-hidden="true"></i><span style="color:lightyellow; padding-top: 22px;"> {{auth.currentUser.profile.amount | number : 0}}</span></div>
   <md-button class="md-warn" flex ng-click="auth.logout()" ng-show="auth.isLoggedIn">Thoát</md-button>
 </div>

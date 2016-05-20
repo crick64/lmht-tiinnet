@@ -1,6 +1,6 @@
 Meteor.startup(function(){
     Meteor.Mailgun.config({
-      username: 'noreply@lmht.tiiin.net',
+      username: 'noreply@hipyo.net',
       password: 'ya12355'
     });
   });

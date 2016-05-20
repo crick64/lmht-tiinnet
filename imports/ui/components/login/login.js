@@ -30,6 +30,7 @@ class Login {
         if (err) {
           this.error = err;
         } else {
+          Meteor.users.update(Meteor.userId(), {$set: {'profile.isAvailable' : true}});
           this.$state.go('parties');
         }
       })

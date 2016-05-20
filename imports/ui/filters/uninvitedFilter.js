@@ -10,7 +10,7 @@ function UninvitedFilter(users, party) {
 
   return users.filter((user) => {
     // if not the owner and not invited
-    return user._id !== party.owner && !_.contains(party.invited, user._id);
+    return user.profile.isAvailable &&  user._id !== party.owner && !_.contains(party.invited, user._id);
   });
 }
 

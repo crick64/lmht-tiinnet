@@ -47,30 +47,30 @@ export function invite(partyId, userId) {
     const replyTo = getContactEmail(Meteor.users.findOne(this.userId));
     const to = getContactEmail(Meteor.users.findOne(userId));
 
-    if (Meteor.isServer && to) {
-      // Email.send({
-      //   to,
-      //   replyTo,
-      //   from: 'noreply@tiiin.net',
-      //   subject: `[LMHT.tiiin.neT] Bạn nhận được một lời mời chơi game`,
-      //   text: `
-      //     Hey, có người vừa mời bạn chơi cùng họ, thắng sẽ nhận được tiền thưởng trên lmht.tiiin.net.
-      //     Click vào đây để xem chi tiết: ${Meteor.absoluteUrl()}
-      //   `
-      // });
-
-      Meteor.call('sendEmail', {
-        to: to,
-        replyTo: replyTo,
-        from: 'noreply@lmht.tiiin.net',
-        subject: '[LMHT.tiiin.neT] Bạn nhận được một lời mời chơi game',
-        text: 'Mailgun is totally awesome for sending emails!',
-        html: `
-          Hey, có người vừa mời bạn chơi cùng họ, thắng sẽ nhận được tiền thưởng trên lmht.tiiin.net.
-          Click vào đây để xem chi tiết: ${Meteor.absoluteUrl()}
-        `
-      });
-    }
+    // if (Meteor.isServer && to) {
+    //   // Email.send({
+    //   //   to,
+    //   //   replyTo,
+    //   //   from: 'noreply@tiiin.net',
+    //   //   subject: `[hipyo.net] Bạn nhận được một lời mời chơi game`,
+    //   //   text: `
+    //   //     Hey, có người vừa mời bạn chơi cùng họ, thắng sẽ nhận được tiền thưởng trên hipyo.net.
+    //   //     Click vào đây để xem chi tiết: ${Meteor.absoluteUrl()}
+    //   //   `
+    //   // });
+    //
+    //   Meteor.call('sendEmail', {
+    //     to: to,
+    //     replyTo: replyTo,
+    //     from: 'noreply@hipyo.net',
+    //     subject: '[hipyo.net] Bạn nhận được một lời mời chơi game',
+    //     text: 'Mailgun is totally awesome for sending emails!',
+    //     html: `
+    //       Hey, có người vừa mời bạn chơi cùng họ, thắng sẽ nhận được tiền thưởng trên hipyo.net.
+    //       Click vào đây để xem chi tiết: ${Meteor.absoluteUrl()}
+    //     `
+    //   });
+    // }
   }
 }
 
@@ -113,7 +113,7 @@ export function uninvite(partyId, userId) {
     //     from: 'noreply@tiiin.net',
     //     subject: `PARTY: ${party.title}`,
     //     text: `
-    //       Hey, I just invited you to ${party.title} on lmht.tiiin.net.
+    //       Hey, I just invited you to ${party.title} on hipyo.net.
     //       Come check it out: ${Meteor.absoluteUrl()}
     //     `
     //   });

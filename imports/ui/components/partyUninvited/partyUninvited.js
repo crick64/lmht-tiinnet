@@ -21,7 +21,6 @@ class PartyUninvited {
   }
 
   viewlmss(user) {
-    //alert(Meteor.userId());
     document.getElementById('gm-info').src = "http://lienminhsamsoi.vn/profile?name=" + user.profile.ign;
   }
 

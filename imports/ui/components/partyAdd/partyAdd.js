@@ -9,16 +9,16 @@ import { Parties } from '../../../api/parties';
 class PartyAdd {
   constructor() {
     this.party = {};
-    this.party.prices = ["2000","3000","5000","10000"];
+    this.pricesList = ["2000","3000","5000","10000"];
   }
 
 
   submit() {
     this.party.owner = Meteor.user()._id;
+    this.party.createdAt = Date.now();
     insertedId = Parties.insert(this.party);
 
     if(this.done) {
-      console.log('ID: ', insertedId);
       Meteor.call('rsvp', insertedId, 'yes', (error) => {
         if (error) {
           console.error('Adding, Oops, unable to rsvp!');

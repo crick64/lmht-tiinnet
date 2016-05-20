@@ -13,7 +13,7 @@
   <div layout="column" layout-gt-sm="row">
     <div flex="85">
       <md-content class="md-padding" layout="row" layout-wrap style="background-color: rgba(0, 0, 0, 0.4);">
-          <md-card style="color:white; background-color: rgba(255, 255, 255, 0.2);" dir-paginate="party in partiesList.parties | itemsPerPage: partiesList.perPage" total-items="partiesList.partiesCount">
+          <md-card style="color:white; background-color: rgba(255, 255, 255, 0.2); width:23%" dir-paginate="party in partiesList.parties | itemsPerPage: partiesList.perPage" total-items="partiesList.partiesCount">
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline" style="color:orange" ui-sref="partyDetails({ partyId: party._id, partyOwner: party.owner })">
@@ -46,6 +46,14 @@
       <div id="charge-form" ng-show="partiesList.isLoggedIn" style="padding-left:20px; color:white;">
         <h3>Nạp tiền vào TK</h3>
         <iframe frameborder="0" height="420" marginheight="0" marginwidth="0" src="https://pluspay.vn/card/1888/evrthg2you@gmail.com" width="650"></iframe>
+        <div>
+          <p>Bạn nên copy ghi chú và chỉnh lại số tiền:
+            <span class="clickable" onClick="copyToClipboard(this);" style="color:lightyellow">
+              Date: {{partiesList.date | date:"dd/MM/yyyy 'at' h:mma"}} - Tài khoản {{partiesList.currentUser | displayNameFilter}},
+              Nạp tiền vào TK, số tiền: 20,000 VND.
+            </span> (click vào và dán (Ctrl+V) vào khung Ghi chú phía trên)
+          </p>
+        </div>
         <!-- {{ partiesList.popNote }} -->
       </div>
     </div>

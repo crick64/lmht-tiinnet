@@ -24,7 +24,7 @@ class PartiesList {
     this.perPage = 20;
     this.page = 1;
     this.sort = {
-      name: -1
+      createdAt: -1
     };
     this.searchText = '';
 
@@ -51,6 +51,12 @@ class PartiesList {
       },
       currentUserId() {
         return Meteor.userId();
+      },
+      currentUser() {
+        return Meteor.user();
+      },
+      date() {
+        return new Date();
       }
     });
   }

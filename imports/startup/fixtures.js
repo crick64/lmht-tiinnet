@@ -3,6 +3,7 @@ import { Parties } from '../api/parties';
 import { Trans } from '../api/trans';
 
 Meteor.startup(() => {
+
   if (Parties.find().count() === 0) {
     const parties = [{
       'name': 'Dubstep-Free Zone',
@@ -25,20 +26,26 @@ Meteor.startup(() => {
     const trans = [{
       'name': 'Dubstep-Free Zone',
       'amount': 2000,
-      'fromGamer': 'fromID',
+      'partyId' : 'xzczsfd',
+      'owner': 'fromID',
       'toGamers' : [{ 'userId':'to_ID_1' }, { 'userId':'to_ID_2' }],
+      'isWonGame' : false,
       'createdAt': Date.now()
     }, {
       'name': 'All dubstep all the time',
       'amount': 3000,
-      'fromGamer': 'fromID',
+      'partyId' : 'xzczsfd',
+      'owner': 'fromID',
       'toGamers' : [{ 'userId':'to_ID_1' }, { 'userId':'to_ID_2' }, { 'userId':'to_ID_3' }],
+      'isWonGame' : false,
       'createdAt': Date.now()
     }, {
       'name': 'Savage lounging',
       'amount': 5000,
-      'fromGamer': 'fromID',
+      'partyId' : 'xzczsfd',
+      'owner': 'fromID',
       'toGamers' : [{ 'userId':'to_ID_1' }],
+      'isWonGame' : true,
       'createdAt': Date.now()
     }];
 

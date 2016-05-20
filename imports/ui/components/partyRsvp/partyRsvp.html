@@ -1,5 +1,4 @@
-<div layout="row" layout-align="end center">
-  <md-button ng-click="partyRsvp.yes()" ng-class="{'md-primary' : partyRsvp.isYes()}">Tham gia game!</md-button>
-  <!-- <md-button ng-click="partyRsvp.maybe()" ng-class="{'md-primary' : partyRsvp.isMaybe()}">Maybe</md-button> -->
+<div layout="row" layout-align="end center" ng-if="!partyRsvp.isYes() && !partyRsvp.isNo()">
   <md-button ng-click="partyRsvp.no()" ng-class="{'md-primary' : partyRsvp.isNo()}">Từ chối</md-button>
+  <md-button ng-click="partyRsvp.yes()" class="md-raised md-warn" ng-class="{'md-warn' : partyRsvp.isYes()}">Tham gia!</md-button>
 </div>

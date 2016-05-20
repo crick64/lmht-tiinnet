@@ -1,12 +1,13 @@
 <h4 class="md-headline"  style="color: cyan">
-  Mời người chơi
-  <span style="font-size:0.5em; color:white">Click vào tên người chơi để xem hồ sơ của họ</span>
+  Mời ({{(partyUninvited.users | uninvitedFilter:partyUninvited.party).length}} người chơi có thể tham gia)
+  <span style="font-size:0.5em; color:white">Click vào <md-button class="md-raised" style="min-width: 10%;"><i class="fa fa-info" aria-hidden="true"></i></md-button> để xem hồ sơ của họ</span>
 </h4>
 
 <md-virtual-repeat-container id="vertical-container">
-  <div class="repeated-item" md-item-size="220" md-virtual-repeat="user in partyUninvited.users | uninvitedFilter:partyUninvited.party" ng-click="partyUninvited.viewlmss(user)">
-    <md-button ng-click="partyUninvited.invite(user)" class="md-raised"><i class="fa fa-plus" aria-hidden="true"></i></md-button>
-    <p>{{ user | displayNameFilter }} - <span style="color:lightyellow">{{user.profile.ign}}</span></p>
+  <div class="repeated-item" md-item-size="80" md-virtual-repeat="user in partyUninvited.users | uninvitedFilter:partyUninvited.party" >
+    <md-button style="min-width: 28%;" ng-click="partyUninvited.invite(user)" class="md-raised"><i class="fa fa-plus" aria-hidden="true"></i> Mời</md-button>
+    <md-button ng-click="partyUninvited.viewlmss(user)" class="md-raised" style="min-width: 18%;"><i class="fa fa-info" aria-hidden="true"></i></md-button>
+    <p style="background-color: rgba(0,0,0,0.48)">{{ user | displayNameFilter }} - <span style="color:lightyellow">{{user.profile.ign}}</span></p>
   </div>
   <md-list-item ng-if="(partyUninvited.users | uninvitedFilter:partyUninvited.party).length <= 0">
     Toàn bộ người chơi đã được mời.

@@ -20,7 +20,8 @@ class Register {
       profile: {
         ign: '',
         // free amount whenever register new user
-        amount: 2000
+        amount: 0,
+        isAvailable: true
       }
     };
 
