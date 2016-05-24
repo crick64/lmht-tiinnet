@@ -1,4 +1,42 @@
-<div layout="row">
-  How trans work! {{trans.isLoggedIn}}
-  <p ng-repeat="tran in trans.trans">If you see me!</p>
+<div class="flex-center" flex>
+  <p ng-show="!trans.authorized">UN_AUTHORIZED</p>
+  <div class="" style="background-color:white; color:black;" ng-if="trans.authorized">
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>#</th>
+            <th md-column>Transaction Name</th>
+            <th md-column>From gamer</th>
+            <th md-column>To</th>
+            <th md-column>Amount</th>
+            <th md-column>Total</th>
+            <th md-column>Created At</th>
+            <th md-column>Status</th>
+            <th md-column>Action</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="tran in trans.trans">
+            <td md-cell>{{$index + 1}}</td>
+            <td md-cell>{{tran.name}}</td>
+            <td md-cell>{{tran.fromGamer}}</td>
+            <td md-cell><span ng-repeat="g in tran.toGamers">[{{g.user}}] </span></td>
+            <td md-cell><strong>{{tran.amount | number:0}}</strong></td>
+            <td md-cell><h4>{{tran.totalAmount | number:0}}</h4></td>
+            <td md-cell>{{tran.createdAt | date:"dd/MM/yyyy 'at' h:mma"}}</td>
+            <td md-cell>{{tran.status}}</td>
+            <td md-cell>
+              <md-button class="md-warn">
+                Transfer
+              </md-button>
+              <md-button class="md-primary">
+                Cancel
+              </md-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </div>
 </div>

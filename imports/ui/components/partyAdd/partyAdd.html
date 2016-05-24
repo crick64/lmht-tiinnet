@@ -1,4 +1,4 @@
-<div layout="column" layout-padding>
+<div id="frmAddParty" layout="column" layout-padding ng-init="partyAdd.init()">
   <md-input-container>
     <label>
       Tên phòng
@@ -16,12 +16,12 @@
     </md-select>
     <!-- <input type="text" ng-model="partyAdd.party.description"/> -->
   </md-input-container>
-  <div flex>
+  <!-- <div flex>
     <md-checkbox ng-model="partyAdd.party.public" aria-label="Public Party?">
       Mời tất cả gamer?
     </md-checkbox>
-  </div>
+  </div> -->
   <div flex>
-    <md-button ng-click="partyAdd.submit()" class="md-raised">Tạo phòng!</md-button>
+    <md-button ng-click="partyAdd.submit($event)" class="md-raised">Tạo phòng!</md-button>
   </div>
 </div>

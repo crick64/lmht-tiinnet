@@ -7,11 +7,10 @@
 
 
 <md-list>
-
   <md-list-item ng-repeat="user in partyInvited.users | invitedFilter:partyInvited.party">
     <p>
-      <span style="font-weight:bold; font-size:1.2em">
-        <span ng-show="partyInvited.isAnswer(user._id)" style="font-size:1.8em;color:lightgreen">
+      <span style="font-weight:bold">
+        <span ng-show="partyInvited.isAnswer(user._id)" style="color:lightgreen">
           <i class="fa fa-check-square" aria-hidden="true"></i> </span>
           <i ng-hide="partyInvited.isAnswer(user._id)" class="fa fa-spinner" aria-hidden="true"></i>&nbsp;
           {{ user | displayNameFilter }} - <span class="clickable" onClick="copyToClipboard(this);" style="color:lightyellow">{{user.profile.ign}}</span>
@@ -22,6 +21,9 @@
   </md-list-item>
   <md-list-item ng-if="(partyInvited.users | invitedFilter:partyInvited.party).length <= 0">
     Chưa mời người chơi nào!
+  </md-list-item>
+  <md-list-item ng-if="(partyInvited.users | invitedFilter:partyInvited.party).length > 0">
+    <md-button class="md-raised md-button md-ink-ripple" style="min-width:100%" ng-click="partyInvited.startGame()">Start Game!</md-button>
   </md-list-item>
   <!-- <md-list-item ng-if="(partyInvited.users | invitedFilter:partyInvited.party).length > 0"> -->
 

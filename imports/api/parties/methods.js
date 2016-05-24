@@ -4,6 +4,7 @@ import { check } from 'meteor/check';
 import { Email } from 'meteor/email';
 
 import { Parties } from './collection';
+import { Trans } from '../trans/collection';
 
 function getContactEmail(user) {
   if (user.emails && user.emails.length)
@@ -74,6 +75,35 @@ export function invite(partyId, userId) {
   }
 }
 
+export function startgame(partyId, invitedUsers) {
+  check(partyId, String);
+  check(invitedUsers, Array);
+
+  if (!this.userId) {
+    throw new Meteor.Error(400, 'You have to be logged in!');
+  }
+
+  const party = Parties.findOne(partyId);
+
+  if (!party) {
+    throw new Meteor.Error(404, 'No such party!');
+  }
+
+  if (party.owner !== this.userId) {
+    throw new Meteor.Error(404, 'No permissions!');
+  }
+
+  Trans.insert({
+    createdAt: new Date(),
+    name: party.name,
+    amount: parseInt(party.description),
+    totalAmount: parseInt(party.description) * invitedUsers.length,
+    fromGamer: party.owner,
+    toGamers: invitedUsers
+  });
+
+}
+
 export function uninvite(partyId, userId) {
   check(partyId, String);
   check(userId, String);
@@ -103,21 +133,6 @@ export function uninvite(partyId, userId) {
       }
     });
 
-    // const replyTo = getContactEmail(Meteor.users.findOne(this.userId));
-    // const to = getContactEmail(Meteor.users.findOne(userId));
-    //
-    // if (Meteor.isServer && to) {
-    //   Email.send({
-    //     to,
-    //     replyTo,
-    //     from: 'noreply@tiiin.net',
-    //     subject: `PARTY: ${party.title}`,
-    //     text: `
-    //       Hey, I just invited you to ${party.title} on hipyo.net.
-    //       Come check it out: ${Meteor.absoluteUrl()}
-    //     `
-    //   });
-    // }
   }
 }
 
@@ -200,5 +215,6 @@ export function rsvp(partyId, rsvp) {
 Meteor.methods({
   invite,
   uninvite,
-  rsvp
+  rsvp,
+  startgame
 });

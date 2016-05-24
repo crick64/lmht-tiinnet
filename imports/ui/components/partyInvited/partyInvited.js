@@ -36,6 +36,16 @@ class PartyInvited {
     }
   }
 
+  invitedUsers() {
+    if (this.party) {
+      var filtered = $.grep(this.party.rsvps,
+        function(o)  {
+        return o.rsvp === 'yes' && o.user !== this.party.owner;
+      }.bind(this));
+      return filtered;
+    }
+  }
+
   totalGoes() {
     if (this.party) {
       var filtered = $.grep(this.party.rsvps,
@@ -60,6 +70,34 @@ class PartyInvited {
       }
     );
   }
+
+  startGame() {
+    console.log('start list -- ',this.invitedUsers());
+    Meteor.call('startgame', this.party._id, this.invitedUsers(),
+      (error) => {
+        if (error) {
+          console.log('Oops, unable to start!');
+          console.log(error);
+        } else {
+          console.log('Started!');
+        }
+      }
+    );
+  }
+
+  endGame() {
+    Meteor.call('endgame', this.party._id, user._id,
+      (error) => {
+        if (error) {
+          console.log('Oops, unable to end!');
+          console.log(error);
+        } else {
+          console.log('Ended!');
+        }
+      }
+    );
+  }
+
 }
 
 const name = 'partyInvited';

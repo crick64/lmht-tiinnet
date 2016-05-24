@@ -12,10 +12,20 @@ class PartyAdd {
     this.pricesList = ["2000","3000","5000","10000"];
   }
 
+  init() {
+    console.log('Im fired!');
+    $('#frmAddParty').validate();
+  }
 
-  submit() {
+  submit(event) {
+    event.preventDefault();
+
     this.party.owner = Meteor.user()._id;
     this.party.createdAt = Date.now();
+    this.party.isStarted = false;
+    this.party.isEnded = false;
+    this.party.isVictory = false;
+
     insertedId = Parties.insert(this.party);
 
     if(this.done) {

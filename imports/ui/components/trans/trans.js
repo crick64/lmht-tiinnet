@@ -21,6 +21,9 @@ class Transaction {
     this.subscribe('trans');
 
     this.helpers({
+      authorized() {
+        return true;
+      },
       isLoggedIn() {
         return !!Meteor.userId();
       },
@@ -35,18 +38,26 @@ class Transaction {
     });
   }
 
-  // logout() {
-  //   Accounts.logout();
-  // }
+  logout() {
+    Accounts.logout();
+  }
 }
 
 // create a module
 export default angular.module(name, [
   angularMeteor,
-  DisplayNameFilter,
-  Trans
+  DisplayNameFilter
 ]).component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,
   controllerAs: name,
   controller: Transaction
-});
+}).config(config);
+
+function config($stateProvider) {
+'ngInject';
+$stateProvider
+  .state('trans', {
+    url: '/trans',
+    template: '<trans><trans>'
+  });
+}

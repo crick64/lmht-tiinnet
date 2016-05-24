@@ -27,17 +27,8 @@ export function gettrans() {
   //   throw new Meteor.Error(400, 'Invalid RSVP');
   // }
 
-  const trans = Trans.find({
-      $and: [{
-        success: true
-      }, {
-        success: {
-          $exists: true
-        }
-      }]
-  });
-
-  return tranns;
+  const trans = Trans.find({});
+  return trans;
 
 }
 

@@ -7,8 +7,8 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import './partiesList.html';
 import { Parties } from '../../../api/parties';
+import { name as Trans } from '../trans/trans';
 import { name as PartiesSort } from '../partiesSort/partiesSort';
-// import { name as PartiesMap } from '../partiesMap/partiesMap';
 import { name as PartyAddButton } from '../partyAddButton/partyAddButton';
 import { name as PartyRemove } from '../partyRemove/partyRemove';
 import { name as PartyCreator } from '../partyCreator/partyCreator';
@@ -91,7 +91,8 @@ export default angular.module(name, [
   PartyRemove,
   PartyCreator,
   PartyRsvp,
-  PartyRsvpsList
+  PartyRsvpsList,
+  Trans
 ]).component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,
   controllerAs: name,

@@ -10,6 +10,6 @@
     <p style="background-color: rgba(0,0,0,0.48)">{{ user | displayNameFilter }} - <span style="color:lightyellow">{{user.profile.ign}}</span></p>
   </div>
   <md-list-item ng-if="(partyUninvited.users | uninvitedFilter:partyUninvited.party).length <= 0">
-    Toàn bộ người chơi đã được mời.
+    Empty.
   </md-list-item>
 </md-virtual-repeat-container>
