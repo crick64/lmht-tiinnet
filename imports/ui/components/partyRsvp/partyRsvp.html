@@ -1,4 +1,7 @@
-<div layout="row" layout-align="end center" ng-if="!partyRsvp.isYes() && !partyRsvp.isNo()">
+<div layout="row" layout-align="end center" ng-if="!partyRsvp.isEnabled() && !partyRsvp.isYes() && !partyRsvp.isNo()">
   <md-button ng-click="partyRsvp.no()" ng-class="{'md-primary' : partyRsvp.isNo()}">Từ chối</md-button>
   <md-button ng-click="partyRsvp.yes()" class="md-raised md-warn" ng-class="{'md-warn' : partyRsvp.isYes()}">Tham gia!</md-button>
+</div>
+<div layout="row" layout-align="end center" ng-if="partyRsvp.isJoined">
+  <strong>You're joined!!!!!</strong>
 </div>

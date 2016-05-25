@@ -20,8 +20,10 @@
           <tr md-row ng-repeat="tran in trans.trans">
             <td md-cell>{{$index + 1}}</td>
             <td md-cell>{{tran.name}}</td>
-            <td md-cell>{{tran.fromGamer}}</td>
-            <td md-cell><span ng-repeat="g in tran.toGamers">[{{g.user}}] </span></td>
+            <td md-cell>&lt;{{trans.getUserById(tran.fromGamer) | displayNameFilter}}&gt;</td>
+            <td md-cell>
+              <span ng-repeat="g in tran.toGamers">[{{g.name}}] </span>
+            </td>
             <td md-cell><strong>{{tran.amount | number:0}}</strong></td>
             <td md-cell><h4>{{tran.totalAmount | number:0}}</h4></td>
             <td md-cell>{{tran.createdAt | date:"dd/MM/yyyy 'at' h:mma"}}</td>

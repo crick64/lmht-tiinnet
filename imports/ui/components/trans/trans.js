@@ -38,6 +38,11 @@ class Transaction {
     });
   }
 
+  getUserById(uID) {
+    check(uID, String);
+    return Meteor.users.findOne(uID);
+  }
+
   logout() {
     Accounts.logout();
   }

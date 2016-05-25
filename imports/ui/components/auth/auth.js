@@ -10,8 +10,6 @@ import { name as Login } from '../login/login';
 import { name as Register } from '../register/register';
 import { name as Password } from '../password/password';
 
-//import { Trans } from '../../../api/trans';
-
 const name = 'auth';
 
 class Auth {
@@ -19,8 +17,6 @@ class Auth {
     'ngInject';
 
     $reactive(this).attach($scope);
-
-    //this.subscribe('trans');
 
     this.helpers({
       isLoggedIn() {
@@ -33,7 +29,9 @@ class Auth {
   }
 
   toggleAvailable() {
-    Meteor.users.update(Meteor.userId(), {$set: {'profile.isAvailable' : this.currentUser.profile.isAvailable}});
+    if (!Meteor.user().profile.isInvited) {
+      Meteor.users.update(Meteor.userId(), {$set: {'profile.isAvailable' : this.currentUser.profile.isAvailable}});
+    }
   }
 
   logout() {
@@ -49,7 +47,6 @@ export default angular.module(name, [
   Login,
   Register,
   Password
-  //Trans
 ]).component(name, {
   templateUrl: `imports/ui/components/${name}/${name}.html`,
   controllerAs: name,

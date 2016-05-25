@@ -2,7 +2,7 @@
   <md-button flex ui-sref="login" ng-hide="auth.isLoggedIn">Đăng nhập</md-button>
   <md-button flex ui-sref="register" ng-hide="auth.isLoggedIn">Đăng ký TK</md-button>
   <span style="font-size:0.7em;padding-top: 22px;" ng-show="auth.isLoggedIn">Bạn có sẵn sàng chiến?</span>
-  <md-switch ng-show="auth.isLoggedIn" ng-model="auth.currentUser.profile.isAvailable" aria-label="is available" ng-change="auth.toggleAvailable()" class="md-warn">
+  <md-switch ng-show="auth.isLoggedIn" ng-model="auth.currentUser.profile.isAvailable" aria-label="is available" ng-change="auth.toggleAvailable()"  class="md-warn">
       <i ng-show="auth.currentUser.profile.isAvailable" class="fa fa-check-circle" aria-hidden="true"></i>
       <i ng-hide="auth.currentUser.profile.isAvailable" class="fa fa-circle-o" aria-hidden="true"></i>
   </md-switch>

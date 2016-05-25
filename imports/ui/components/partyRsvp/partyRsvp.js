@@ -14,18 +14,19 @@ class PartyRsvp {
     return this.isAnswer('yes');
   }
 
-  maybe() {
-    this.answer('maybe');
-  }
-  isMaybe() {
-    return this.isAnswer('maybe');
-  }
-
   no() {
     this.answer('no');
   }
   isNo() {
     return this.isAnswer('no');
+  }
+
+  isEnabled() {
+    return this.party.isStarted && true;
+  }
+
+  isJoined() {
+    return this.isYes() && this.isEnabled();
   }
 
   answer(answer) {

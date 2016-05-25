@@ -93,13 +93,36 @@ export function startgame(partyId, invitedUsers) {
     throw new Meteor.Error(404, 'No permissions!');
   }
 
+  // ok let's change users' status to Un-Available
+  invitedUsers.forEach(function (u) {
+    Meteor.users.update(u.user, {$set: {
+      'profile.isAvailable' : false,
+      'profile.isInvited' : true
+      }});
+
+  });
+
+  _.map(invitedUsers, function (o) {
+    o.name = getContactEmail(Meteor.users.findOne(o.user));
+  });
+
+
+  // then, insert a transaction
+
   Trans.insert({
     createdAt: new Date(),
     name: party.name,
     amount: parseInt(party.description),
     totalAmount: parseInt(party.description) * invitedUsers.length,
     fromGamer: party.owner,
-    toGamers: invitedUsers
+    toGamers: invitedUsers,
+    status: 'on-going'
+  });
+
+  Parties.update(partyId, {
+    $set: {
+      isStarted: true
+    }
   });
 
 }
